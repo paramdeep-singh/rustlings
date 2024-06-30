@@ -5,6 +5,10 @@
 
 // I AM NOT DONE
 
+fn call_me() {
+    println!("learning Rust!");
+}
+
 fn main() {
     call_me();
 }

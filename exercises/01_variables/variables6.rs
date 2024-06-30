@@ -3,8 +3,6 @@
 // Execute `rustlings hint variables6` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
 /*
     Constants in Rust must have their type specified because they are evaluated at compile-time, 
     while variables defined with let can have their type inferred because they are evaluated at 
