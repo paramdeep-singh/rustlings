@@ -3,8 +3,6 @@
 // Execute `rustlings hint variables2` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
 fn main() {
     /*
     Q: I've begun learning the Rust programming language. Why does Rust need the programmer to 
