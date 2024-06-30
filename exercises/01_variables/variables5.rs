@@ -8,6 +8,9 @@
 fn main() {
     let number = "T-H-R-E-E"; // don't change this line
     println!("Spell a Number : {}", number);
-    number = 3; // don't rename this variable
+    // This is called "shadowing" in rust! To note: after this transformation the variable is again 
+    // immutable! 
+    let number = 3; // don't rename this variable
+    // number = 2; ... so this won't work!
     println!("Number plus two is : {}", number + 2);
 }
