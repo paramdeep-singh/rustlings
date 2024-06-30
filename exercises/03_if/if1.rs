@@ -2,8 +2,6 @@
 //
 // Execute `rustlings hint if1` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
-
 /*
     I tried this neat looking solution, but it doesn't work. This is because the if code-block
     is an expression in Rust, and an expression cannot have two types. The if statement below
