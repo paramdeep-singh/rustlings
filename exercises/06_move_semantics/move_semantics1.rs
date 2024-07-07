@@ -3,8 +3,6 @@
 // Execute `rustlings hint move_semantics1` or use the `hint` watch subcommand
 // for a hint.
 
-// I AM NOT DONE
-
 #[test]
 fn main() {
     // stack variable 'vec0' now points to a vector allocated in the heap
