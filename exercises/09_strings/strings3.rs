@@ -3,8 +3,6 @@
 // Execute `rustlings hint strings3` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
 /*
     I asked ChatGPT what is going on here memory wise, and they gave a beautiful answer!
     
