@@ -40,6 +40,23 @@ fn build_scores_table(results: String) -> HashMap<String, Team> {
         // will be the number of goals conceded by team_2, and similarly
         // goals scored by team_2 will be the number of goals conceded by
         // team_1.
+        let team1_scorecard = scores.entry(team_1_name).or_insert(
+            Team { goals_scored: 0, goals_conceded: 0}
+        );
+        /*
+            In Rust, when you use the or_insert method with a HashMap, it indeed returns a mutable 
+            reference to the value for the corresponding key. However, Rust allows you to use the 
+            dot notation directly on references to access the fields or methods of the underlying 
+            data, without needing to explicitly dereference them.
+         */
+        team1_scorecard.goals_scored += team_1_score;
+        team1_scorecard.goals_conceded += team_2_score;
+
+        let team2_scorecard = scores.entry(team_2_name).or_insert(
+            Team { goals_scored: 0, goals_conceded: 0}
+        );
+        team2_scorecard.goals_scored += team_2_score;
+        team2_scorecard.goals_conceded += team_1_score;
     }
     scores
 }
