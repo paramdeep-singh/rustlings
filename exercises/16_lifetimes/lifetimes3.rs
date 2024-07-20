@@ -5,8 +5,6 @@
 // Execute `rustlings hint lifetimes3` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
 /*
     While implementing this solution, I got curious on when would TWO lifetimes be specified on a 
     struct (say if it has two slice references on it). After much thought, and playing with the 
