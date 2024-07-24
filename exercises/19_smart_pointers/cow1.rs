@@ -31,6 +31,12 @@ fn abs_all<'a, 'b>(input: &'a mut Cow<'b, [i32]>) -> &'a mut Cow<'b, [i32]> {
 mod tests {
     use super::*;
 
+    /*
+    In the reference_mutation test case, the input variable is a Cow that borrows a vector of 
+    integers. When you call abs_all on this Cow, it will mutate the underlying data, so the Cow will 
+    be cloned into an owned vector. Therefore, you should replace the todo!() with Cow::Owned(_) to 
+    assert that the input variable is now an owned Cow.
+     */
     #[test]
     fn reference_mutation() -> Result<(), &'static str> {
         // Clone occurs because `input` needs to be mutated.
@@ -42,16 +48,29 @@ mod tests {
         }
     }
 
+    /*
+    In the reference_no_mutation test case, the input variable is a Cow that borrows a vector of 
+    integers, but none of the integers are negative, so no mutation occurs. Therefore, the Cow 
+    remains a borrowed Cow, and you should replace the todo!() with Cow::Borrowed(_) to assert that 
+    the input variable is still a borrowed Cow.
+     */
     #[test]
     fn reference_no_mutation() -> Result<(), &'static str> {
         // No clone occurs because `input` doesn't need to be mutated.
         let slice = [0, 1, 2];
         let mut input = Cow::from(&slice[..]);
         match abs_all(&mut input) {
-            // TODO
+            Cow::Borrowed(vec) => Ok(assert_eq!(*vec, vec![0, 1, 2])),
+            _ => Err("Expected borrowed value"),
         }
     }
 
+    /*
+    In the owned_no_mutation test case, the input variable is an owned Cow that contains a vector of 
+    integers. Since none of the integers are negative, no mutation occurs, and the Cow remains an 
+    owned Cow. You should replace the todo!() with Cow::Owned(_) to assert that the input variable 
+    is still an owned Cow.
+     */
     #[test]
     fn owned_no_mutation() -> Result<(), &'static str> {
         // We can also pass `slice` without `&` so Cow owns it directly. In this
@@ -60,10 +79,17 @@ mod tests {
         let slice = vec![0, 1, 2];
         let mut input = Cow::from(slice);
         match abs_all(&mut input) {
-            // TODO
+            Cow::Owned(vec) => Ok(assert_eq!(*vec, vec![0, 1, 2])),
+            _ => Err("Expected owned value"),
         }
     }
 
+    /*
+    In the owned_mutation test case, the input variable is an owned Cow that contains a vector of 
+    integers, some of which are negative. When you call abs_all on this Cow, it will mutate the 
+    underlying data, so the Cow will remain an owned Cow. You should replace the todo!() with 
+    Cow::Owned(_) to assert that the input variable is still an owned Cow.
+     */
     #[test]
     fn owned_mutation() -> Result<(), &'static str> {
         // Of course this is also the case if a mutation does occur. In this
@@ -72,7 +98,8 @@ mod tests {
         let slice = vec![-1, 0, 1];
         let mut input = Cow::from(slice);
         match abs_all(&mut input) {
-            // TODO
+            Cow::Owned(vec) => Ok(assert_eq!(*vec, vec![1, 0, 1])),
+            _ => Err("Expected owned value"),
         }
     }
 }
